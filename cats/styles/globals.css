@@ -1,0 +1,76 @@
+:root {
+	--primary: #ff0;
+	--white: #fff;
+	--secondary: #272727;
+	--button-border: 1px solid rgba(255, 255, 0, 0.329);
+	--box-shadow-1: 0 2px 4px 0 rgb(255 255 0 / 20%);
+}
+html,
+body {
+	padding: 0;
+	margin: 0;
+	color: var(--white);
+	background-color: var(--secondary);
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+main {
+	flex-grow: 1;
+}
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+.banner {
+	margin-top: 30px;
+	height: 200px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 50px;
+	animation-name: scaleOut;
+	animation-duration: 0.3s;
+	animation-iteration-count: initial;
+	animation-timing-function: ease-in;
+}
+
+/*********************************************************
+  NProgress
+*********************************************************/
+#nprogress .bar {
+	/* position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw; */
+	background: var(--primary) !important;
+	height: 5px !important;
+}
+
+#nprogress .peg {
+	box-shadow: 0 0 10px var(--secondary) 0 0 5px var(--primary) !important;
+}
+
+#nprogress .spinner-icon {
+	border-top-color: var(--secondary) !important;
+	border-left-color: var(--primary) !important;
+	border-right-color: var(--primary) !important;
+	border-bottom-color: var(--primary) !important;
+	height: 50px !important;
+	width: 50px !important;
+	top: 50%;
+	left: 50%;
+	position: fixed;
+}
+/* Cookie Consent  */
+.btn-overlay {
+	align-self: center;
+}
