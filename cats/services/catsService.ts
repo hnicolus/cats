@@ -44,8 +44,7 @@ export async function getCatsByCategory(
 export async function getBreed(breedId: string) {
 	try {
 		const breeds = await getAllBreeds();
-		const breed = breeds.find((x: any) => x.id === breedId);
-		return breed;
+		return breeds.find((x: any) => x.id === breedId);
 	} catch (error) {
 		throw new Error("Failed to load Breeds");
 	}
@@ -64,6 +63,15 @@ export async function getAllCategories() {
 	try {
 		const { data } = await http.get("categories");
 		return data;
+	} catch (error) {
+		throw new Error("Failed to load Breeds");
+	}
+}
+
+export async function getCategory(categoryId: string) {
+	try {
+		const categories = await getAllCategories();
+		return categories.find((x: any) => x.id === Number(categoryId));
 	} catch (error) {
 		throw new Error("Failed to load Breeds");
 	}
