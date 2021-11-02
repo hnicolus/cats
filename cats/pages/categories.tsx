@@ -5,9 +5,10 @@ import Image from "next/image";
 import Button from "../components/Button";
 import { getAllCategories } from "../services/catsService";
 
-import styles from "@styles/Breeds.module.css";
+import styles from "@styles/categories.module.css";
 import Layout from "@components/Layout";
-function Categories() {
+
+const Categories: NextPage = () => {
 	const [categories, setCategories] = useState<any[]>([]);
 	const router = useRouter();
 
@@ -28,22 +29,20 @@ function Categories() {
 						height={200}
 						alt="Cat"
 					/>
-					<h1>Choose a Breed </h1>
+					<h1>Choose a Catgory </h1>
 				</div>
 				<div className={styles.breeds}>
 					<div className={styles.breedList}>
 						{categories.map((category, i) => (
-							<div key={i} className="container-item">
-								<Button onClick={() => handleOnClick(category)}>
-									{category.name}
-								</Button>
-							</div>
+							<Button key={i} onClick={() => handleOnClick(category)}>
+								{category.name}
+							</Button>
 						))}
 					</div>
 				</div>
 			</div>
 		</Layout>
 	);
-}
+};
 
 export default Categories;
