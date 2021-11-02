@@ -24,7 +24,13 @@ function Breeds() {
 			{breeds.length > 0 ? (
 				<div className={styles.parent}>
 					<div className={styles.banner}>
-						<Image src="/leopard.png" width={150} height={200} alt="Cat" />
+						<Image
+							className="cat"
+							src="/leopard.png"
+							width={150}
+							height={200}
+							alt="Cat"
+						/>
 						<h1>Choose a Breed </h1>
 					</div>
 					<div className={styles.breeds}>
