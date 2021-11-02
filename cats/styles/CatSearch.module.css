@@ -1,5 +1,5 @@
 .banner {
-	height: 280px;
+	min-height: 280px;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -32,22 +32,27 @@
 	transform: scale(1.2);
 }
 .banner h1 {
-	/* border: 2px solid;
-	border-width: 0 0 3px 0; */
-	height: 90px;
-	width: 300px;
+	font-size: 40px;
+	transform: scale(1);
 	color: var(--primary);
 	text-align: center;
 	text-transform: uppercase;
 	transition: all 0.3s;
 }
 .banner p {
-	margin-left: auto;
-	margin-right: auto;
 	text-align: center;
 	font-size: 18px;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+/* 
+@media screen and (max-width: 600px) {
+	.banner h1 {
+		font-size: 30px;
+	}
+	.banner p {
+		font-size: 16px;
+	}
+} */
 .container {
 	display: flex;
 	align-items: center;
