@@ -8,7 +8,7 @@
 }
 .logo {
 	position: absolute;
-	top: 1%;
+	top: 1.4%;
 	left: 1%;
 }
 .nav ul {
@@ -83,7 +83,7 @@
 	transition: all 0.5s;
 }
 .nav .active .paw {
-	margin-top: 6px;
+	margin-top: 10px;
 	margin-left: 4px;
 	position: relative;
 }
@@ -92,8 +92,8 @@
 	position: absolute;
 	width: 12px;
 	height: 12px;
-	border: 3px solid var(--primary);
-	border-width: 0 0 3px 3px;
+	border: 0 solid var(--primary);
+	border-width: 0 0 3px 3px !important;
 	opacity: 1;
 	bottom: -8px;
 	left: -8px;
@@ -121,7 +121,7 @@
 .mobile .hamburger {
 	position: absolute;
 	right: 1%;
-	top: 1%;
+	top: 2%;
 	background: transparent;
 	color: var(--secondary);
 	width: 60px;
