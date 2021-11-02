@@ -126,7 +126,14 @@ function CatSearch(props: any) {
 					<div className={styles.container}>
 						{cats.map((cat: any, i: number) => (
 							<div key={i} className={styles.card}>
-								<Image unoptimized src={cat.url} layout="fill" alt={breedId} />
+								<Image
+									blurDataURL="leopard.png"
+									placeholder="blur"
+									unoptimized
+									src={cat.url}
+									layout="fill"
+									alt={breedId}
+								/>
 							</div>
 						))}
 					</div>
