@@ -1,0 +1,179 @@
+.container {
+	top: 50%;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 200px;
+	width: 350px;
+}
+
+.cat {
+	position: absolute;
+	right: 50px;
+	bottom: 60px;
+	background-color: var(--primary);
+	height: 65px;
+	width: 80px;
+	border-radius: 0 80px 80px 0;
+}
+
+.ear {
+	position: absolute;
+	bottom: 64px;
+	left: 8px;
+	border-radius: 20px 0 0 0;
+	height: 15px;
+	width: 15px;
+	background-color: var(--primary);
+	box-shadow: 25px 0 var(--primary);
+}
+
+.eye,
+.eye:before {
+	position: absolute;
+	height: 7px;
+	width: 10px;
+	border: 2px solid #2c2c2c;
+	border-radius: 0 0 15px 15px;
+	border-top: none;
+}
+
+.eye {
+	top: 18px;
+	left: 15px;
+}
+.eye::before {
+	content: "";
+	left: 30px;
+}
+
+.nose {
+	background-color: #ee9b01;
+	height: 12px;
+	width: 12px;
+	border-radius: 50%;
+	position: absolute;
+	top: 32px;
+	left: 25px;
+	box-shadow: 12px 0 #ee9b01;
+}
+
+.nose::before {
+	content: "";
+	width: 12px;
+	height: 8px;
+	position: absolute;
+	background-color: #ee9b01;
+	left: 6px;
+}
+.nose::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-top: 8px solid var(--primary);
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	bottom: 7px;
+	left: 6px;
+}
+
+.mouth {
+	position: absolute;
+	background-color: #2c2c2c;
+	height: 15px;
+	width: 17px;
+	border-radius: 0 0 5px 5px;
+	top: 38px;
+	left: 27px;
+	animation: mouth-move 2s infinite;
+	transform-origin: top;
+}
+
+@keyframes mouth-move {
+	50% {
+		transform: scaleY(0.7);
+	}
+}
+.body {
+	background-color: var(--primary);
+	height: 90px;
+	width: 140px;
+	position: absolute;
+	right: 65px;
+	bottom: 0;
+	border-radius: 60px 60px 0 0;
+	animation: sleep 2s infinite;
+	transform-origin: bottom right;
+}
+
+@keyframes sleep {
+	50% {
+		transform: scale(0.9, 1.05);
+	}
+}
+.tail {
+	background-color: rgb(228, 228, 12);
+	height: 20px;
+	width: 90px;
+	position: absolute;
+	right: 150px;
+	bottom: 0;
+	border-radius: 20px 0 0 20px;
+}
+
+.body::before {
+	content: "";
+	position: absolute;
+	background-color: #ee9b01;
+	height: 12px;
+	width: 30px;
+	border-radius: 6px;
+	bottom: 0;
+	left: 22px;
+	box-shadow: 45px 0 #ee9b01;
+}
+
+.bubble {
+	height: 20px;
+	width: 20px;
+	background-color: rgba(212, 211, 211, 0.7);
+	position: absolute;
+	left: 65px;
+	top: 20px;
+	border-radius: 50px 50px 50px 5px;
+	animation: bubble-scale 2s infinite;
+}
+
+@keyframes bubble-scale {
+	50% {
+		transform: scale(1.6);
+	}
+}
+
+.shadow {
+	position: absolute;
+	height: 10px;
+	width: 240px;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	bottom: 52px;
+	left: 70px;
+	animation: shadow 2s infinite;
+}
+
+@keyframes shadow {
+	50% {
+		transform: scaleX(0.7);
+	}
+}
+
+.container h4 {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	color: var(--primary);
+	transform: translateX(-50%);
+	text-shadow: 1px 1px 2px black;
+}
