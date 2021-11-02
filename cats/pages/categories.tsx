@@ -7,6 +7,7 @@ import { getAllCategories } from "../services/catsService";
 
 import styles from "@styles/categories.module.css";
 import Layout from "@components/Layout";
+import Loader from "@components/Loader";
 
 const Categories: NextPage = () => {
 	const [categories, setCategories] = useState<any[]>([]);
@@ -21,26 +22,25 @@ const Categories: NextPage = () => {
 	}, []);
 	return (
 		<Layout title="Breeds">
-			<div className={styles.parent}>
-				<div className={styles.banner}>
-					<Image
-						src="/StudioFibonacci-Cartoon-leopard.png"
-						width={150}
-						height={200}
-						alt="Cat"
-					/>
-					<h1>Choose a Catgory </h1>
-				</div>
-				<div className={styles.breeds}>
-					<div className={styles.breedList}>
-						{categories.map((category, i) => (
-							<Button key={i} onClick={() => handleOnClick(category)}>
-								{category.name}
-							</Button>
-						))}
+			{categories.length > 0 ? (
+				<div className={styles.parent}>
+					<div className={styles.banner}>
+						<Image src="/leopard.png" width={150} height={200} alt="Cat" />
+						<h1>Choose a Catgory </h1>
+					</div>
+					<div className={styles.breeds}>
+						<div className={styles.breedList}>
+							{categories.map((category, i) => (
+								<Button key={i} onClick={() => handleOnClick(category)}>
+									{category.name}
+								</Button>
+							))}
+						</div>
 					</div>
 				</div>
-			</div>
+			) : (
+				<Loader label={"Loading Breeds"} />
+			)}
 		</Layout>
 	);
 };

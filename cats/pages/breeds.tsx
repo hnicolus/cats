@@ -7,6 +7,7 @@ import { getAllBreeds } from "../services/catsService";
 
 import styles from "@styles/Breeds.module.css";
 import Layout from "@components/Layout";
+import Loader from "@components/Loader";
 function Breeds() {
 	const [breeds, setBreeds] = useState<any[]>([]);
 	const router = useRouter();
@@ -20,28 +21,27 @@ function Breeds() {
 	}, []);
 	return (
 		<Layout title="Breeds">
-			<div className={styles.parent}>
-				<div className={styles.banner}>
-					<Image
-						src="/StudioFibonacci-Cartoon-leopard.png"
-						width={150}
-						height={200}
-						alt="Cat"
-					/>
-					<h1>Choose a Breed </h1>
-				</div>
-				<div className={styles.breeds}>
-					<div className={styles.breedList}>
-						{breeds.map((breed, i) => (
-							<div key={i} className="container-item">
-								<Button onClick={() => handleOnClick(breed)}>
-									{breed.name}
-								</Button>
-							</div>
-						))}
+			{breeds.length > 0 ? (
+				<div className={styles.parent}>
+					<div className={styles.banner}>
+						<Image src="/leopard.png" width={150} height={200} alt="Cat" />
+						<h1>Choose a Breed </h1>
+					</div>
+					<div className={styles.breeds}>
+						<div className={styles.breedList}>
+							{breeds.map((breed, i) => (
+								<div key={i} className="container-item">
+									<Button onClick={() => handleOnClick(breed)}>
+										{breed.name}
+									</Button>
+								</div>
+							))}
+						</div>
 					</div>
 				</div>
-			</div>
+			) : (
+				<Loader label={"Loading Breeds"} />
+			)}
 		</Layout>
 	);
 }
