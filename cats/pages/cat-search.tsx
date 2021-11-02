@@ -107,8 +107,9 @@ function CatSearch(props: any) {
 			}
 		})();
 	}, [breedId, categoryId]);
+	const title = breed ? breed.name : category ? category.name : "";
 	return (
-		<Layout title={breedId}>
+		<Layout title={title}>
 			{cats.length > 0 ? (
 				<>
 					{breedId && (
