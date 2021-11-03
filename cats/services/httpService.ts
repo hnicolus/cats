@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const BASE_ENDPOINT = process.env.BASE_API_ENDPOINT;
 const CAT_API_TOKEN = process.env.CAT_API_TOKEN;
@@ -21,8 +22,10 @@ http.interceptors.response.use(undefined, (error) => {
 		error.response.status >= 400 &&
 		error.response.status < 500;
 	if (!expectedError) {
-		console.log("Unexpected Error - ", error.message);
+		toast.error("Unexpected internal Error ");
+		console.log("Unepected Eror", error.message);
 	}
+
 	return Promise.reject(error);
 });
 export { http };
