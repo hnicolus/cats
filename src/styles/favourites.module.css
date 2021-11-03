@@ -7,11 +7,7 @@
 	width: 100%;
 	height: 80vh;
 	color: var(--primary);
-	animation-name: scaleOut;
-	animation-timing-function: ease;
-	animation-duration: 0.3s;
-	animation-iteration-count: initial;
-	animation-fill-mode: initial;
+	animation: scaleOut 0.3s ease 1;
 }
 .wrapper h1 {
 	font-size: 34px;
@@ -21,18 +17,17 @@
 }
 .message {
 	position: absolute;
-	top: 38%;
+	top: 36%;
 	left: 50%;
 	text-align: center;
 	transform: translate(-50%, -50%);
-	animation: scaleOut 0.3s ease 1;
 }
+
 .action {
 	position: absolute;
 	top: 62%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	animation: scaleOut 0.3s ease 1;
 }
 
 @keyframes scaleOut {
@@ -43,5 +38,28 @@
 	100% {
 		opacity: 1;
 		transform: scale(1);
+	}
+}
+@media screen and (max-width: 600px) {
+	.message {
+		top: 27%;
+	}
+
+	.action {
+		top: 64%;
+	}
+}
+@media screen and (max-width: 370px) {
+	.message {
+		top: 24%;
+	}
+
+	.action {
+		top: 64%;
+	}
+}
+@media screen and (min-width: 600px) {
+	.message {
+		top: 35%;
 	}
 }
