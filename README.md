@@ -1,13 +1,15 @@
-# Cats land
+<img title="a title" alt="Paw" src="./src/public/paw.svg" style="width:60px">
+
+# Cats land 
  [live preview](https://cats-land.vercel.app/)
  
-## Project Requirements 
+### Project Requirements 
  - [NodeJS](https://nodejs.org/en/download/)
  - An IDE or Text Editor like [Visual Studio Code](https://code.visualstudio.com/) or [Jet Brains webstorm](https://www.jetbrains.com/webstorm/download/)
  -  ☺ finally you must be a cat lover to run the project., you are going to be working with alot of Cats...😅
   
 
-## Getting Started
+### Getting Started
 
 - Open the project root folder (the Directory with the package.json file) with your prefered IDE
 - Open next.config.js Add your Cats API key which you can get from [here](https://thecatapi.com/)
@@ -16,7 +18,7 @@
 
   
 
-## Resources used 
+### Resources used 
  - HTML 5 
  - CSS
  - React 
