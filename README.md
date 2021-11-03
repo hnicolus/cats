@@ -1,4 +1,6 @@
-# Cats land
+<img title="a title" alt="Paw" src="./src/public/paw.svg" style="width:60px">
+
+# Cats land 
  [live preview](https://cats-land.vercel.app/)
  
 ## Project Requirements 
