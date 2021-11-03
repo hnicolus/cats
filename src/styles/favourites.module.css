@@ -27,6 +27,13 @@
 @media screen and (max-width: 600px) {
 	.message {
 		top: 32%;
+		transform: translate(-50%, -50%);
+	}
+}
+@media screen and (max-width: 400px) {
+	.message {
+		top: 28%;
+		transform: translate(-50%, -50%);
 	}
 }
 .action {
