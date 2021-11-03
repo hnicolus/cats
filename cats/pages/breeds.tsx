@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import type { NextPage } from "next";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 import Image from "next/image";
 import Button from "../components/Button";
 import { getAllBreeds } from "../services/catsService";
@@ -17,7 +17,9 @@ function Breeds() {
 		router.push(`/cat-search/?breed=${breed.id}`);
 	};
 	useEffect(() => {
-		getAllBreeds().then((res) => setBreeds(res));
+		getAllBreeds()
+			.then((res) => setBreeds(res))
+			.catch(() => toast.error("Failed to load Breeds"));
 	}, []);
 	return (
 		<Layout title="Breeds">
