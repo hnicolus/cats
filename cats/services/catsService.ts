@@ -10,7 +10,7 @@ export async function getAllBreeds() {
 	}
 }
 
-export async function getBreedCats(breedId: string, page = 0, maxCount = 10) {
+export async function getCatsByBreed(breedId: string, page = 0, maxCount = 10) {
 	try {
 		if (breedId.length > 0) {
 			const { data } = await http.get(
@@ -75,4 +75,34 @@ export async function getCategory(categoryId: string) {
 	} catch (error) {
 		throw new Error("Failed to load Breeds");
 	}
+}
+
+const FAVOURITES_KEY = "favourites";
+
+export async function addToFavourites(cat: any): Promise<void> {
+	const json = localStorage.getItem(FAVOURITES_KEY);
+	if (json) {
+		const favourites = JSON.parse(json);
+		favourites.items = [...favourites.items, cat];
+		localStorage.setItem(FAVOURITES_KEY, JSON.stringify(favourites));
+	} else {
+		const favourites = {
+			items: [cat],
+		};
+		localStorage.setItem(FAVOURITES_KEY, JSON.stringify(favourites));
+	}
+}
+
+export async function removeFromFavourites(catId: string): Promise<void> {
+	const json = localStorage.getItem(FAVOURITES_KEY);
+	if (json === null) return;
+	const favourites = JSON.parse(json);
+	favourites.items = favourites.items.filter((cat: any) => cat.id !== catId);
+	localStorage.setItem(FAVOURITES_KEY, JSON.stringify(favourites));
+}
+export async function getFavourites(): Promise<any[]> {
+	const json = localStorage.getItem(FAVOURITES_KEY);
+	if (!json) return [];
+	const favourites = JSON.parse(json);
+	return favourites.items;
 }
