@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Loader from "@components/Loader";
 import CustomButton from "@components/Button";
 import { useRouter } from "next/router";
-import styles from "@styles/404.module.css";
+import styles from "@styles/favourites.module.css";
 import Card from "@components/Card";
 import Banner from "@components/Banner";
 import { getFavourites, removeFromFavourites } from "@services/catsService";
