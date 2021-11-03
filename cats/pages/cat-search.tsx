@@ -1,23 +1,28 @@
 import type { NextPage } from "next";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/router";
-import useWindowPosition from "@hooks/useWindowPosition";
-import styles from "@styles/CatSearch.module.css";
+import { toast } from "react-toastify";
 import {
-	getAllBreeds,
 	getBreed,
-	getBreedCats as getByBreed,
+	getCatsByBreed,
 	getCategory,
 	getCatsByCategory,
-	loadAllImages,
+	getFavourites,
 } from "../services/catsService";
 import Layout from "@components/Layout";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import Loader from "@components/Loader";
+import Card from "@components/Card";
+import useFavourites from "@hooks/useFavourites";
+import Banner from "@components/Banner";
 
-function CatSearch(props: any) {
+const CatSearch: NextPage = (props: any) => {
 	const router = useRouter();
+	const {
+		items: favourites,
+		onAdded: addToFavourite,
+		onRemoved: removeFromFavourite,
+	} = useFavourites();
 	const [breedId, setBreedId] = useState("");
 	const [breed, setBreed] = useState<any>(null);
 
@@ -27,6 +32,20 @@ function CatSearch(props: any) {
 	const [cats, setCats] = useState<any[]>([]);
 	const [maxScroll, setMaxScroll] = useState(0);
 	const [page, setPage] = useState(0);
+
+	const handleOnFavouriteClicked = (cat: any) => {
+		(async () => {
+			const items = await getFavourites();
+			const alreadyFavourite = items.find((x) => x.id === cat.id);
+			if (alreadyFavourite) {
+				toast.error("Cat already Added to favourites");
+				//removeFromFavourite(cat.id);
+			} else {
+				addToFavourite(cat);
+				toast.success("Cat Added to favourites");
+			}
+		})();
+	};
 
 	useEffect(() => {
 		(async () => {
@@ -63,17 +82,17 @@ function CatSearch(props: any) {
 			if (currentPostion + 1000 > maxScroll) {
 				(async () => {
 					if (breed !== null && categoryId === "") {
-						await getByBreed(breedId, page)
+						await getCatsByBreed(breedId, page)
 							.then((res) => {
 								setCats([...cats, ...res]);
 							})
-							.catch((err) => console.log(err));
+							.catch((err) => toast.error("Failed to load Cats."));
 					} else if (categoryId !== "") {
 						await getCatsByCategory(categoryId, page)
 							.then((res) => {
 								setCats([...cats, ...res]);
 							})
-							.catch(() => alert("Failed to load cats"));
+							.catch(() => toast.error("Failed to load Cats."));
 					}
 					updateMaxScroll();
 				})();
@@ -81,19 +100,19 @@ function CatSearch(props: any) {
 		},
 		[maxScroll]
 	);
-	//Listen to
+
 	useEffect(() => {
 		(async () => {
 			if (breedId) {
 				const breedResult = await getBreed(breedId);
 				setBreed(breedResult);
-				await getByBreed(breedId, page)
+				await getCatsByBreed(breedId, page)
 					.then((res) => {
 						setCats([...cats, ...res]);
 						updateMaxScroll();
 						setPage(page + 1);
 					})
-					.catch((err) => console.log(err));
+					.catch((err) => toast.error("Failed to load Cats."));
 			} else if (categoryId !== "") {
 				const categoryResult = await getCategory(categoryId);
 				setCategory(categoryResult);
@@ -103,39 +122,31 @@ function CatSearch(props: any) {
 						updateMaxScroll();
 						setPage(page + 1);
 					})
-					.catch(() => alert("Failed to load cats"));
+					.catch(() => toast.error("Failed to load Cats."));
 			}
 		})();
 	}, [breedId, categoryId]);
+
 	const title = breed ? breed.name : category ? category.name : "";
 	return (
 		<Layout title={title}>
 			{cats.length > 0 ? (
 				<>
 					{breedId && (
-						<div className={styles.banner}>
+						<Banner>
 							<h1>{breed.name}</h1>
 							<p>{breed.description}</p>
-						</div>
+						</Banner>
 					)}
 
 					{categoryId && (
-						<div className={styles.banner}>
+						<Banner>
 							<h1>{category.name}</h1>
-						</div>
+						</Banner>
 					)}
-					<div className={styles.container}>
+					<div className="container">
 						{cats.map((cat: any, i: number) => (
-							<div key={i} className={styles.card}>
-								<Image
-									blurDataURL="leopard.png"
-									placeholder="blur"
-									unoptimized
-									src={cat.url}
-									layout="fill"
-									alt={breedId}
-								/>
-							</div>
+							<Card key={i} cat={cat} onFavorite={handleOnFavouriteClicked} />
 						))}
 					</div>
 				</>
@@ -144,6 +155,6 @@ function CatSearch(props: any) {
 			)}
 		</Layout>
 	);
-}
+};
 
 export default CatSearch;
