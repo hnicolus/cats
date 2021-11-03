@@ -2,7 +2,10 @@ import React from "react";
 import Image from "next/image";
 import styles from "./Card.module.css";
 import Heart from "@components/Heart";
-function index({ cat }: any) {
+function index({ cat, onFavorite }: { cat: any; onFavorite: Function }) {
+	const handleOnFavourite = () => {
+		onFavorite(cat);
+	};
 	return (
 		<div className={styles.card}>
 			<Image
@@ -14,7 +17,7 @@ function index({ cat }: any) {
 				alt="cat"
 			/>
 			<div className={styles.caption}>
-				<Heart />
+				<Heart onClick={handleOnFavourite} />
 			</div>
 		</div>
 	);
