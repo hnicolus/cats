@@ -48,7 +48,13 @@ const Home: NextPage = () => {
 								<Link href={item.url}>
 									<a className={styles.card}>
 										<h3>Search By {item.name}</h3>
-										<div className={styles.wave}></div>
+										<Image
+											className={styles.wave}
+											src="/paw.svg"
+											height={50}
+											width={50}
+											alt="Paw"
+										/>
 									</a>
 								</Link>
 							</div>
