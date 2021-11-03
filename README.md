@@ -17,8 +17,8 @@
   
 
 ## Resources used 
- - HTML 5 
- - CSS
+ - JSX 
+ - CSS (no libraries or ui kits)
  - React 
  - NextJS
  - Typescript
