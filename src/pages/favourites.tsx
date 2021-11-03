@@ -1,4 +1,3 @@
-import useFavourites from "@hooks/useFavourites";
 import React, { useEffect, useState } from "react";
 import Layout from "@components/Layout";
 import { toast } from "react-toastify";
