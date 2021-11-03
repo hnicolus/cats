@@ -10,6 +10,13 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
+					<meta name="Creator" content="Nicolas Maluleke" />
+					<meta name="twitter:creator" content="@hnicolus" />
+					<meta name="rating" content="SAFE FOR KIDS" />
+					<meta
+						name="description"
+						content="Cats Land is a Cats gallery Application,where you can find cats images."
+					/>
 					<link rel="icon" href="/paw.svg" />
 					<link
 						rel="stylesheet"
