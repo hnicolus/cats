@@ -15,3 +15,14 @@
 - to run the project type `yarn dev` 
 
   
+
+## Resources used 
+ - HTML 5 
+ - CSS
+ - React 
+ - NextJS
+ - Typescript
+ - Toastify (for toast notifications)
+ - NProgress (for page route progress)
+ - axios (for http calls)
+ - n8tb1t/use-scroll-position (to get page scroll position)
