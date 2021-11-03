@@ -110,6 +110,12 @@
 	border-color: var(--primary);
 	box-shadow: 0 2px 4px 0 rgb(255 255 0 / 40%);
 }
+.card:active {
+	color: var(--secondary);
+	background-color: var(--primary);
+	border-color: var(--primary);
+	box-shadow: 0 2px 4px 0 rgb(255 255 0 / 40%);
+}
 .card .wave {
 	opacity: 0;
 }
