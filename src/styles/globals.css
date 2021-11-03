@@ -26,6 +26,7 @@ main {
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+	animation: scaleOut 0.4s ease 0s 1 normal forwards;
 }
 
 .banner {
@@ -89,5 +90,16 @@ main {
 
 	100% {
 		transform: scale(1.01);
+	}
+}
+
+@keyframes scaleOut {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
 	}
 }
