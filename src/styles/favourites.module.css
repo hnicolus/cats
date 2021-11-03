@@ -18,18 +18,22 @@
 }
 .message {
 	position: absolute;
-	top: 38%;
+	top: 36%;
 	left: 50%;
 	text-align: center;
 	transform: translate(-50%, -50%);
-	animation: scaleOut 0.3s ease 1;
+}
+
+@media screen and (max-width: 600px) {
+	.message {
+		top: 34%;
+	}
 }
 .action {
 	position: absolute;
 	top: 62%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	animation: scaleOut 0.3s ease 1;
 }
 
 @keyframes scaleOut {

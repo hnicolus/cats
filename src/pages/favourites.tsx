@@ -36,7 +36,7 @@ function Favourites(props: any) {
 			{favourites?.length === 0 && (
 				<div className={styles.wrapper}>
 					<div className={styles.message}>
-						<h1>Meeoops !! </h1>
+						<h1>Meeoops !!</h1>
 						<p>You have no favourite cats yet.</p>
 					</div>
 					<Loader />
