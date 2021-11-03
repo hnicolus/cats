@@ -26,12 +26,6 @@
 	text-align: center;
 	transform: translate(-50%, -50%);
 }
-
-@media screen and (max-width: 600px) {
-	.message {
-		top: 32%;
-	}
-}
 .action {
 	position: absolute;
 	top: 62%;
