@@ -18,11 +18,7 @@ import Banner from "@components/Banner";
 
 const CatSearch: NextPage = (props: any) => {
 	const router = useRouter();
-	const {
-		items: favourites,
-		onAdded: addToFavourite,
-		onRemoved: removeFromFavourite,
-	} = useFavourites();
+	const { onAdded: addToFavourite } = useFavourites();
 	const [breedId, setBreedId] = useState("");
 	const [breed, setBreed] = useState<any>(null);
 
@@ -39,7 +35,6 @@ const CatSearch: NextPage = (props: any) => {
 			const alreadyFavourite = items.find((x) => x.id === cat.id);
 			if (alreadyFavourite) {
 				toast.error("Cat already Added to favourites");
-				//removeFromFavourite(cat.id);
 			} else {
 				addToFavourite(cat);
 				toast.success("Cat Added to favourites");
@@ -52,8 +47,7 @@ const CatSearch: NextPage = (props: any) => {
 			const params = router.query;
 			if (Object.keys(params).length === 0) return;
 			if (params.breed) {
-				//@ts-ignore
-				const { breed: breedId }: { breedId: String } = params;
+				const { breed: breedId }: any = params;
 				setBreedId(breedId);
 				updateMaxScroll();
 			} else if (params.category) {
@@ -64,6 +58,17 @@ const CatSearch: NextPage = (props: any) => {
 		})();
 	}, [router.query]);
 
+	const mergeCatsWithNoDuplicates = (serverCats: any[]) => {
+		const tmpCats: any[] = [];
+		serverCats.forEach((cat: any) => {
+			const sameCat = cats.find((x: any) => x.id === cat.id);
+			if (!sameCat) {
+				tmpCats.push(cat);
+			}
+		});
+		const newCats = [...cats, ...tmpCats];
+		setCats(newCats);
+	};
 	const updateMaxScroll = () => {
 		setMaxScroll(
 			Math.max(
@@ -79,18 +84,18 @@ const CatSearch: NextPage = (props: any) => {
 	useScrollPosition(
 		({ currPos }) => {
 			const currentPostion = currPos.y * -1;
-			if (currentPostion + 1000 > maxScroll) {
+			if (currentPostion > maxScroll - 2000) {
 				(async () => {
 					if (breed !== null && categoryId === "") {
 						await getCatsByBreed(breedId, page)
 							.then((res) => {
-								setCats([...cats, ...res]);
+								mergeCatsWithNoDuplicates(res);
 							})
 							.catch((err) => toast.error("Failed to load Cats."));
 					} else if (categoryId !== "") {
 						await getCatsByCategory(categoryId, page)
 							.then((res) => {
-								setCats([...cats, ...res]);
+								mergeCatsWithNoDuplicates(res);
 							})
 							.catch(() => toast.error("Failed to load Cats."));
 					}
@@ -108,9 +113,7 @@ const CatSearch: NextPage = (props: any) => {
 				setBreed(breedResult);
 				await getCatsByBreed(breedId, page)
 					.then((res) => {
-						setCats([...cats, ...res]);
-						updateMaxScroll();
-						setPage(page + 1);
+						mergeCatsWithNoDuplicates(res);
 					})
 					.catch((err) => toast.error("Failed to load Cats."));
 			} else if (categoryId !== "") {
@@ -118,12 +121,12 @@ const CatSearch: NextPage = (props: any) => {
 				setCategory(categoryResult);
 				await getCatsByCategory(categoryId, page)
 					.then((res) => {
-						setCats([...cats, ...res]);
-						updateMaxScroll();
+						mergeCatsWithNoDuplicates(res);
 						setPage(page + 1);
 					})
 					.catch(() => toast.error("Failed to load Cats."));
 			}
+			updateMaxScroll();
 		})();
 	}, [breedId, categoryId]);
 
