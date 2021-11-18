@@ -7,7 +7,6 @@ function CustomButton(props: any) {
 	return (
 		<button
 			{...props}
-			color="primary"
 			onClick={handleOnClick}
 			className={styles.Button}
 		>
